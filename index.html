@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 es más que cero timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">1 > 0 Timer</h1>
+        <div id="taskInput" class="task-input">
+            <input type="text" id="taskName" placeholder="¿En qué vas a trabajar?">
+            <button id="confirmTask">Comenzar</button>
+        </div>
+        <div id="timerContainer" class="hidden">
+            <div id="currentTask" class="task-title"></div>
+            <div id="timer">00:00</div>
+            <div id="nextLevel"></div>
+            <div class="buttons">
+                <button id="startBtn">Comenzar</button>
+                <button id="stopBtn" class="hidden">Parar</button>
+            </div>
+            <div id="messages" class="messages"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
