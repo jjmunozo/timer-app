@@ -131,6 +131,7 @@ function initializeTimer() {
     const taskInput = document.getElementById('taskInput');
     const timerContainer = document.getElementById('timerContainer');
     const taskNameInput = document.getElementById('taskName');
+    const intro = document.getElementById('intro');
     
     taskName = taskNameInput.value.trim();
     if (!taskName) {
@@ -138,9 +139,9 @@ function initializeTimer() {
         return;
     }
     
-    document.getElementById('currentTask').innerHTML = 
-        `Estás trabajando en <span class="task-name">${taskName}</span>`;
+    document.getElementById('currentTask').textContent = `Estás trabajando en ${taskName}`;
     taskInput.classList.add('hidden');
+    intro.classList.add('hidden'); // Ocultar la introducción
     timerContainer.classList.remove('hidden');
     updateDisplay(levels[0].duration);
 }
