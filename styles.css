@@ -79,6 +79,11 @@ button {
     margin-bottom: 20px;
     color: #333;
     text-align: center;
+    font-weight: bold;
+    background-color: #e6f3ff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: inline-block;
 }
 
 .task-title .task-name {
@@ -239,7 +244,8 @@ button {
 }
 
 .steps li {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
+    line-height: 1.4;
 }
 
 .signature {

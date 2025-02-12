@@ -139,7 +139,8 @@ function initializeTimer() {
         return;
     }
     
-    document.getElementById('currentTask').textContent = `Estás trabajando en ${taskName}`;
+    document.getElementById('currentTask').innerHTML = 
+        `💥 Estás trabajando en <span class="task-name">${taskName}</span> 💥`;
     taskInput.classList.add('hidden');
     intro.classList.add('hidden'); // Ocultar la introducción
     timerContainer.classList.remove('hidden');
