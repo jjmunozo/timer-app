@@ -133,3 +133,77 @@ button {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
+.sound-control {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.sound-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.sound-option {
+    font-size: 24px;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.sound-option:hover {
+    transform: scale(1.1);
+}
+
+.sound-option.active {
+    border-color: #4CAF50;
+    background-color: #e8f5e9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.volume-control input[type="range"] {
+    width: 100px;
+    height: 5px;
+    -webkit-appearance: none;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#volumeIcon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.sound-title {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}

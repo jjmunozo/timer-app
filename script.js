@@ -4,6 +4,8 @@ let isRunning = false;
 let taskName = '';
 let totalTimeWorked = 0;
 let countingUp = false;
+let isPlaying = false;
+let currentSound = null;
 
 const levels = [
     { duration: 60, target: 0 },      // 1:00 → 0:00 (cuenta regresiva)
@@ -13,6 +15,12 @@ const levels = [
 ];
 
 let currentLevel = 0;
+
+const sounds = {
+    white: document.getElementById('whiteNoise'),
+    rain: document.getElementById('rainSound'),
+    jungle: document.getElementById('jungleSound')
+};
 
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -107,6 +115,16 @@ function stopTimer(completed = false) {
     totalTimeWorked = 0;
     timeLeft = levels[currentLevel].duration;
     updateDisplay(timeLeft);
+    
+    if (isPlaying && currentSound) {
+        currentSound.pause();
+        currentSound.currentTime = 0;
+        document.querySelector('.volume-control').classList.add('hidden');
+        document.querySelectorAll('.sound-option').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        isPlaying = false;
+    }
 }
 
 function initializeTimer() {
@@ -137,4 +155,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('startBtn').addEventListener('click', startTimer);
     document.getElementById('stopBtn').addEventListener('click', () => stopTimer(false));
+    
+    document.querySelectorAll('.sound-option').forEach(button => {
+        button.addEventListener('click', (e) => playSound(e.target.dataset.sound));
+    });
+    
+    document.getElementById('volumeSlider').addEventListener('input', adjustVolume);
+    document.getElementById('volumeIcon').addEventListener('click', toggleMute);
 });
+
+function playSound(soundType) {
+    const volumeControl = document.querySelector('.volume-control');
+    
+    if (isPlaying) {
+        currentSound.pause();
+        currentSound.currentTime = 0;
+    }
+    
+    if (isPlaying && currentSound === sounds[soundType]) {
+        volumeControl.classList.add('hidden');
+        isPlaying = false;
+        currentSound = null;
+    } else {
+        currentSound = sounds[soundType];
+        currentSound.volume = document.getElementById('volumeSlider').value / 100;
+        currentSound.play();
+        volumeControl.classList.remove('hidden');
+        isPlaying = true;
+    }
+    
+    document.querySelectorAll('.sound-option').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.sound === soundType && isPlaying) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+function adjustVolume() {
+    const volume = this.value / 100;
+    const volumeIcon = document.getElementById('volumeIcon');
+    
+    if (currentSound) {
+        currentSound.volume = volume;
+    }
+    
+    if (volume === 0) {
+        volumeIcon.textContent = '🔇';
+    } else if (volume < 0.5) {
+        volumeIcon.textContent = '🔉';
+    } else {
+        volumeIcon.textContent = '🔊';
+    }
+}
+
+function toggleMute() {
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeIcon = document.getElementById('volumeIcon');
+    
+    if (currentSound.volume > 0) {
+        currentSound.volume = 0;
+        volumeSlider.value = 0;
+        volumeIcon.textContent = '🔇';
+    } else {
+        currentSound.volume = 0.5;
+        volumeSlider.value = 50;
+        volumeIcon.textContent = '🔊';
+    }
+}

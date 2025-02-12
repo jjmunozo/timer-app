@@ -22,8 +22,29 @@
                 <button id="stopBtn" class="hidden">Parar</button>
             </div>
             <div id="messages" class="messages"></div>
+            <div class="sound-control">
+                <p class="sound-title">Acompañá tu trabajo con sonidos productivos:</p>
+                <div class="sound-buttons">
+                    <button class="sound-option" data-sound="white">🎧</button>
+                    <button class="sound-option" data-sound="rain">☔</button>
+                    <button class="sound-option" data-sound="jungle">🌳</button>
+                </div>
+                <div class="volume-control hidden">
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                    <span id="volumeIcon">🔊</span>
+                </div>
+            </div>
         </div>
     </div>
+    <audio id="whiteNoise" loop>
+        <source src="sounds/whitenoise.wav" type="audio/wav">
+    </audio>
+    <audio id="rainSound" loop>
+        <source src="sounds/rain.wav" type="audio/wav">
+    </audio>
+    <audio id="jungleSound" loop>
+        <source src="sounds/jungle.wav" type="audio/wav">
+    </audio>
     <script src="script.js"></script>
 </body>
 </html>
